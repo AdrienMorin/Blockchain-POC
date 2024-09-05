@@ -13,7 +13,7 @@ import TransactionService from "App/Services/TransactionService";
 
 export default class TransactionsController {
 
-  public async getTransactions({ auth, response }: HttpContextContract){
+  public async getBlockchain({ auth, response }: HttpContextContract){
     await auth.use("api").authenticate();
     const blockService = new BlockService();
 
@@ -37,8 +37,6 @@ export default class TransactionsController {
     try {
       receiverKey = request.body().receiverKey;
       amount = request.body().amount;
-
-      console.log("user "+user.publicKey+" wants to send "+amount+" to user "+receiverKey)
 
       // Check if the receiver exists
       const receiver = await User.findBy('public_key', receiverKey)

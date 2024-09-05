@@ -9,10 +9,10 @@ Route.group(() => {
 
   // Wallet routes
   Route.get('/wallet/getWallet', 'WalletsController.getWallet')
-  Route.get('/wallet/getWalletAmount', 'WalletsController.getWalletAmount')
+  Route.get('/wallet/getWalletBalance', 'WalletsController.getWalletBalance')
 
   // Transactions routes
-  Route.get('/transactions', 'TransactionsController.getTransactions')
+  Route.get('/blockchain', 'TransactionsController.getBlockchain')
   Route.post('/transactions', 'TransactionsController.createTransaction')
   Route.post('/transactions/verify', 'TransactionsController.verifyTransactionSignature')
 

@@ -12,7 +12,7 @@ export default class WalletsController {
     })
   }
 
-  public async getWalletAmount({ auth, response }: HttpContextContract) {
+  public async getWalletBalance({ auth, response }: HttpContextContract) {
     await auth.use("api").authenticate();
     const user = auth.use("api").user!;
 
