@@ -1,0 +1,15 @@
+services:
+
+  api:
+    build: .
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: "pnpm run dev"
+
+volumes:
+  postgres_volume:
