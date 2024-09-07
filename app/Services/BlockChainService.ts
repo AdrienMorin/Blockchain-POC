@@ -80,13 +80,14 @@ export default class BlockChainService {
           status: false,
           message: "Block " + (i+1) + "got a transaction with wrong signature."
         };
-        // Verify the inputs and outputs amounts
+        // Verify the fee transaction (only one per block)
         if (transaction.inputs.length === 0) {
           if (feeTransactionFound) throw new Error("A block can't have multiple fee transactions")
           else {
             feeTransactionFound = true;
           }
         } else {
+          // Verify the inputs and outputs amounts
           let inputAmount: number = 0;
           for (const input of transaction.inputs) {
             inputAmount += input.amount;
@@ -172,9 +173,6 @@ export default class BlockChainService {
         message: "The usable coin with id " + coin.id + " is the outputs of " + countOutputs + " transactions."
       }
     }
-
-    // Verif transactions :
-    // -> Pour la transaction fee, vérifier qu'il y en a qu'une et qu'elle est bien construite.
 
     return {
       status: true,

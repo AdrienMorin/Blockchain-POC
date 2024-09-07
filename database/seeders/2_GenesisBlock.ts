@@ -37,6 +37,7 @@ export default class extends BaseSeeder {
     await genesisBlock.related('header').create({
       nounce: 0,
       rootHash: merkleTreeService.getRoot(),
+      previousHash: "0000000000000000000000000000000000000000000000000000000000000000",
       difficulty: 3
     })
 
