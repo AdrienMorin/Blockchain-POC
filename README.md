@@ -28,30 +28,30 @@ The blockchain is stored in a sqlite DB, in the `tmp/db.sqlite3` folder.
 In this version of the API, there is no possibility to create a new wallet. The only wallets are those which are created by the seeders.
 Those are the users credentials that you can use to login to the API :
 ```json
-{
+[{
 "firstname": "Adrien",
 "lastname": "Morin",
 "email": "amorin@gmail.com",
-"password": "amorin123",
+"password": "amorin123"
 },
 {
 "firstname": "Jean",
 "lastname": "Dupont",
 "email": "jdupont@gmail.com",
-"password": "jdupont123",
+"password": "jdupont123"
 },
 {
 "firstname": "Lucie",
 "lastname": "Deschamps",
 "email": "ldeschamps@gmail.com",
-"password": "ldeschamps123",
+"password": "ldeschamps123"
 },
 {
 "firstname": "Baptiste",
 "lastname": "Durand",
 "email": "bdurand@gmail.com",
-"password": "bdurand123",
-}
+"password": "bdurand123"
+}]
 ```
 
 ## API requests examples
@@ -114,6 +114,13 @@ Authorization : Bearer <token>
 Authorization : Bearer <token>
 
 ## Setup and run the project
+
+### Using Docker
+
+1. Clone the project
+2. Run `docker compose up`
+
+### Running the project locally
 
 1. Clone the project
 2. Create a `.env` file at the root of the project with the following content :
