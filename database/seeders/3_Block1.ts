@@ -115,10 +115,12 @@ export default class extends BaseSeeder {
 
     const genesisBlock = await blockService.findBlockById(1);
 
+    // We create the block
+    // A previous hash is the hash of the previous block header (not the whole block, cf. part 7 and 8 of the white paper)
     await block.related('header').create({
       nounce: 0,
       rootHash: merkleRoot,
-      previousHash: merkleTree.hashString(blockService.getBlockSummarize(genesisBlock)),
+      previousHash: merkleTree.hashString(blockService.getBlockHeaderSummarize(genesisBlock)),
       difficulty: 3
     })
 

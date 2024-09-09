@@ -17,7 +17,8 @@ export default class ProofOfWorkService {
     while (true) {
       this.block.header.nounce = nonce;
 
-      const hash = crypto.createHash('sha256').update(blockService.getBlockSummarize(this.block)).digest('hex');
+      // A block hash is the hash of the block header (not the whole block, cf. part 7 and 8 of the white paper)
+      const hash = crypto.createHash('sha256').update(blockService.getBlockHeaderSummarize(this.block)).digest('hex');
 
       if (hash.startsWith(target)) {
         console.log(`Found nonce: ${nonce}`);
@@ -32,7 +33,8 @@ export default class ProofOfWorkService {
   public verifyPoW(): boolean {
     const blockService = new BlockService();
     const target = '0'.repeat(this.block.header.difficulty);
-    const hash = crypto.createHash('sha256').update(blockService.getBlockSummarize(this.block)).digest('hex');
+    // A block hash is the hash of the block header (not the whole block, cf. part 7 and 8 of the white paper)
+    const hash = crypto.createHash('sha256').update(blockService.getBlockHeaderSummarize(this.block)).digest('hex');
     console.log("hash: ", hash)
     return hash.startsWith(target);
   }

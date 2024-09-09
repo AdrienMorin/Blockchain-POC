@@ -55,7 +55,8 @@ export default class BlockChainService {
       // Header verification
       // Verify the previous hash
       const merkleTreeService = new MerkleTreeService(blocks[i].transactions);
-      const computedPrevHash: string = merkleTreeService.hashString(blockService.getBlockSummarize(blocks[i-1]));
+      // A previous hash is the hash of the previous block header (not the whole block, cf. part 7 and 8 of the white paper)
+      const computedPrevHash: string = merkleTreeService.hashString(blockService.getBlockHeaderSummarize(blocks[i-1]));
       if (computedPrevHash !== blocks[i].header.previousHash) return {
         status: false,
         message: "The block " + (i+1) + " has a wrong previous hash"

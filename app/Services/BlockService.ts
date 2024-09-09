@@ -58,6 +58,17 @@ export default class BlockService {
     return blocks.map((block) => this.serializeBlock(block))
   }
 
+  public getBlockHeaderSummarize(block: Block) {
+    return JSON.stringify({
+      id: block.header.id,
+      rootHash: block.header.rootHash,
+      previousHash: block.header.previousHash,
+      nounce: Number(block.header.nounce),
+      blockId: block.header.blockId,
+      difficulty: block.header.difficulty
+    })
+  }
+
   public getBlockSummarize(block: Block) {
     return JSON.stringify({
       id: block.id,

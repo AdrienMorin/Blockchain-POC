@@ -160,10 +160,12 @@ export default class TransactionsController {
     const merkleTreeService = new MerkleTreeService(transactions);
     const merkleRoot = merkleTreeService.getRoot();
 
+    // We create the block
+    // A previous hash is the hash of the previous block header (not the whole block, cf. part 7 and 8 of the white paper)
     await block.related('header').create({
       nounce: 0,
       rootHash: merkleRoot,
-      previousHash: merkleTreeService.hashString(blockService.getBlockSummarize(lastBlock)),
+      previousHash: merkleTreeService.hashString(blockService.getBlockHeaderSummarize(lastBlock)),
       difficulty: 4
     })
 
