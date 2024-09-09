@@ -1,5 +1,5 @@
 # Blockchain-POC
-A bitcoin Proof Of Concept made with AdonisJS framework. It implements the bitcoin structure, simplified and centralized, to be simpler.
+A Bitcoin Proof Of Concept made with AdonisJS framework. It implements the bitcoin structure, simplified and centralized, to be simpler.
 
 Video presentation of the project : https://youtu.be/19DjOkj8JXI
 
