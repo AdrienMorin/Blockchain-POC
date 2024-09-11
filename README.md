@@ -9,7 +9,7 @@ Video presentation of the project : https://youtu.be/19DjOkj8JXI
 - [x] Get the wallet public and private keys (using your login)
 - [x] Get the blockchain (all the blocks with there transactions)
 - [x] Create a transaction
-- [x] Mine a block (include the created transactions into a block and add it to the blockchain)
+- [x] Mine a block (include the created transactions into a block and add it to the blockchain : the minor (who call the mine route) will earn 4 bitcoins for transaction fee, which is generated and not paid by any sender)
 - [x] Verify the blockchain (check if the blockchain is valid)
 
 ## Project structure
@@ -53,6 +53,16 @@ Those are the users credentials that you can use to login to the API :
 "password": "bdurand123"
 }]
 ```
+You can use those credentials to login to the API and test the different endpoints. If you don't login you will not have access token and then not be able to access the routes
+When you login, you will receive a Bearer token that you will have to put in the Authorization header of your requests to the API.
+
+There is an initialisation of the blockchain with a genesis block and a first block with some transactions in the seeders.
+
+The users have some coins in their wallets to be able to make transactions : 
+- Adrien Morin : 9 coins
+- Jean Dupont : 0 coins
+- Lucie Deschamps : 10 coins
+- Baptiste Durand : 35 coins
 
 ## API requests examples
 

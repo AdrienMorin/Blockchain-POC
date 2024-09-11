@@ -10,6 +10,7 @@ export default class BlockChainService {
   constructor() {
   }
 
+  // Method to verify the blockchain integrity
   public async verifyBlockChain(): Promise<{status: boolean, message: string}> {
     const blockService = new BlockService();
     const transactionService = new TransactionService();

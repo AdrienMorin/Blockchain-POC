@@ -11,19 +11,25 @@ export default class MerkleTreeService {
     this.tree = this.buildTree(this.leaves);
   }
 
+  // Hashes a transaction and returns the result in hexadecimal
   public hashTransaction(transaction: Transaction): string {
     const transactionService = new TransactionService();
     return crypto.createHash('sha256').update(transactionService.getTransactionSummarize(transaction)).digest('hex');
   }
 
+  // Hashes a string and returns the result in hexadecimal
   public hashString(string: string){
     return crypto.createHash('sha256').update(string).digest('hex');
   }
 
+
+  // Builds a Merkle tree from a list of leaves
   private buildTree(leaves: string[]): string[][] {
     const tree: string[][] = [];
     let currentLevel = leaves;
 
+    // We get all leaves of a level, hash them by pairs, and store the result in the next level
+    // Then we repeat the process until we have only one hash left
     while (currentLevel.length > 1) {
       const nextLevel: string[] = [];
       for (let i = 0; i < currentLevel.length; i += 2) {
@@ -39,6 +45,7 @@ export default class MerkleTreeService {
     return tree;
   }
 
+  // Returns the Merkle root of the tree
   public getRoot(): string {
     return this.tree[this.tree.length - 1][0];
   }

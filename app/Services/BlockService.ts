@@ -5,6 +5,7 @@ export default class BlockService {
   constructor() {
   }
 
+  // Method to find the last block of the blockchain
   public async findLastBlock(): Promise<Block> {
     const block = await Block.query()
       .orderBy('id', "desc")
@@ -18,6 +19,7 @@ export default class BlockService {
     return block!;
   }
 
+  // Method to find a block by its id
   public async findBlockById(id: number): Promise<Block> {
     const block = await Block.query()
       .where('id', id)
@@ -31,6 +33,7 @@ export default class BlockService {
     return block!;
   }
 
+  // Method to find all the blocks with a filter to not see some unnecessary fields
   public async findAllWithFilter() {
     const blocks = await Block.query()
       .preload('header')
@@ -43,6 +46,7 @@ export default class BlockService {
     return this.serializeBlockList(blocks!);
   }
 
+  // Method to find all the blocks
   public async findAll() {
     return Block.query()
       .preload('header')
@@ -54,10 +58,12 @@ export default class BlockService {
       });
   }
 
+  // Method to find all the blocks with a filter to not see some unnecessary fields
   serializeBlockList(blocks : Block[]) {
     return blocks.map((block) => this.serializeBlock(block))
   }
 
+  // Method to return the block header summarize JSON of a block (used for the PoW and when hashing a block is needed)
   public getBlockHeaderSummarize(block: Block) {
     return JSON.stringify({
       id: block.header.id,
@@ -102,7 +108,7 @@ export default class BlockService {
     })
   }
 
-
+  // Method to serialize a block (put a filter to not see some unnecessary fields)
   private serializeBlock(block: Block){
     return block.serialize({
       relations: {

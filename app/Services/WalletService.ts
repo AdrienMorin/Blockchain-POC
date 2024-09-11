@@ -6,6 +6,7 @@ export default class WalletService {
   constructor() {
   }
 
+  // Method to get the amount of coins in the user's wallet
   public async getWalletAmount(publicKey: string): Promise<number> {
     const fetchedUser = await User.query()
       .preload('coins')
@@ -20,6 +21,7 @@ export default class WalletService {
     return amount;
   }
 
+  // Method to select the coins to reach a target amount
   public async selectInputs(ownerKey: string, targetAmount: number): Promise<{amount: number, coins:Coin[]}> {
     // Get all the user's coins
     const coins = await Coin.query()
@@ -42,7 +44,7 @@ export default class WalletService {
       }
     }
 
-    // Vérifier si la somme des montants sélectionnés est suffisante
+    // Verify if the amount is enough
     if (currentAmount < targetAmount) {
       throw new Error('Insufficient coins to reach the target amount')
     }
@@ -53,6 +55,7 @@ export default class WalletService {
     }
   }
 
+  // Method to use the coins (set them as not usable)
   public async useCoins(coins: Coin[]) {
     for (const coin of coins) {
       coin.usable = false;
